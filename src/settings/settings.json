@@ -1,0 +1,77 @@
+{
+  "colors": {
+    "primary": "#3b82f6",
+    "secondary": "#4f545c",
+    "success": "#22c55e",
+    "danger": "#ED4245",
+    "info": "#FEE75C",
+    "warning": "#fbbd23",
+
+    "magic": "#c026d3",
+    "green": "#57F287",
+    "fuchsia": "#EB459E",
+    "azoxo": "#5865F2",
+
+    "developer": "#3e70dd",
+    "balance": "#45ddc0",
+    "brilliance": "#f07d5f",
+    "nitro": "#ff6bfa",
+    "bravery": "#9c84ef"
+  },
+  "emojis": {
+      "static": {
+        "success": "1242133260742688859",
+        "danger": "1242133282167062568",
+        "verifiedDev": "1242133683226546240",
+        "activeDev": "1242133574816104579",
+        "completedQuest": "1242133660333772960",
+        "bughunter": "1242133477084893276",
+        "bughunter2": "1242133638154551318",
+        "moderatorAluri": "1242133698145554432",
+        "discordStaff": "1242133494415753338",
+        "earlySupporter": "1242133513667346502",
+        "balance": "1242133386710089779",
+        "bravery": "1242133417995534368",
+        "brilliance": "1242133450144612353",
+        "hypeSquadEvents": "1242133541651742844",
+        "nitro": "1242133714310533160",
+        "partner": "1242133557250490502",
+        "booster": "1242133614838157312",
+        "slashCommand": "1242133752549736590",
+        "date": "1242134035946274826",
+        "leftArrow": "1242137694595977286",
+        "rightArrow": "1242137732394778765",
+        "premium": "1242133588904775733",
+        "color": "1243112625794056263",
+        "world": "1243112570408144948",
+        "textChannel": "1243112652461310012",
+        "calendar": "1243113537698791424",
+        "time": "1243113498779586620",
+        "form": "1243113498779586620",
+        "discover": "1243112537227268156",
+        "user": "1243112522068918282",
+        "verified": "1243112469677867049",
+        "id": "1243112666881593400",
+        "join": "1242133777807839393",
+        "left": "1242133791779192852",
+        "ts": "1242137828117184592",
+        "banHammer": "1243112679179288647",
+        "edit": "1242133301695746168",
+        "timeout": "1242133319056101427",
+        "warning": "1242133335673667695",
+        "trash": "1243165212228718592"
+      },
+      "animated": {}
+  },
+  "channels": {
+    "commandLogs": "1226545494659174431"
+  },
+  "links": {
+    "supportServer": "https://discord.gg/6DtqEfpjmW",
+    "squareCloud": "https://squarecloud.app/pt-BR/home",
+    "discordJs": "https://discord.js.org/",
+    "typeScript": "https://www.typescriptlang.org/",
+    "developer": "<@629734543867379732>"
+  },
+  "copyright": "Moderation • © All rights reserved."
+}

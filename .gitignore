@@ -1,0 +1,25 @@
+# Folders
+/dist
+/discloud
+/deprecated
+/node_modules
+/.vscode
+
+# Files
+/.env
+/.env.development
+/package-lock.json
+mongodb.md
+info.md
+
+# Config files
+/firebase.json
+/discloud.config
+squarecloud.config
+
+# Extensions
+*.zip
+*.sqlite
+*.exe
+*.db
+*.development.json
