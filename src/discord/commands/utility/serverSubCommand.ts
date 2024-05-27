@@ -16,7 +16,7 @@ import {
 
 new Command({
     name: "server",
-    description: "Gerencia o modulo de servidor",
+    description: "Manage the guild module",
     dmPermission: false,
     type: ApplicationCommandType.ChatInput,
     options: [
