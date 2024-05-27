@@ -22,7 +22,7 @@ new Command({
     options: [
         {
             name: "badges",
-            description: "Veja as badges do servidor",
+            description: "View a server's badgesr",
             type: ApplicationCommandOptionType.Subcommand,
         }
     ],
