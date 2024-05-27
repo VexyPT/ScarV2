@@ -4,7 +4,7 @@ import { ApplicationCommandOptionType, ApplicationCommandType, PermissionFlagsBi
 
 new Command({
     name: "emoji",
-    description: "manages the emojis module",
+    description: "Manages the emojis module",
     dmPermission: false,
     type: ApplicationCommandType.ChatInput,
     options: [
