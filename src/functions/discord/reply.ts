@@ -81,7 +81,7 @@ export const reply = {
   },
   default(options: ReplyOptions) {
     embedReply({
-      color: settings.colors.secondary,
+      color: settings.colors.primary,
       clear: true, ...options
     });
   }
