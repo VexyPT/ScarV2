@@ -1,5 +1,5 @@
 import { Command } from "#base";
-import { icon, reply } from "#functions";
+import { icon } from "#functions";
 import { settings } from "#settings";
 import { hexToRgb } from "@magicyan/discord";
 import { ApplicationCommandOptionType, ApplicationCommandType, EmbedBuilder, codeBlock } from "discord.js";
@@ -15,11 +15,11 @@ new Command({
             description: "See information about me.",
             type: ApplicationCommandOptionType.Subcommand,
         },
-        {
+        /*{
             name: "status",
             description: "Check my status",
             type: ApplicationCommandOptionType.Subcommand
-        }
+        }*/
       ],
       async run(interaction) {
 
@@ -27,17 +27,6 @@ new Command({
 
         switch (options.getSubcommand()) {
           case "info": {
-            
-            reply.default({
-                interaction,
-                text: `I was developed by ${settings.links.developer}, where my job is to moderate and look after your server.\n\nI was **programmed** in [Typescript](${settings.links.typeScript}) using [Discord.Js](${settings.links.discordJs}), I stay **online** thanks to **[Square Cloud](${settings.links.squareCloud})**. Use </bot status:1236520871061884999> to know my currently status.\n\n> ${icon("slashCommand")} I only support **SlashCommands (/)**\n\nI'm currently taking care of **${client.guilds.cache.size.toLocaleString()} Servers** and managing **${client.guilds.cache.map(g => g.memberCount).reduce((a,b) => a + b).toLocaleString("pt-BR")} Users** 🥳`,
-                footer: "Developed with ❤️",
-                thumbnail: `${client.user.displayAvatarURL()}`
-            });
-            break;
-          } // fim do /bot info
-
-          case "status": {
            
             const date = new Date();
             const day = date.getDate();
@@ -48,8 +37,9 @@ new Command({
             const seconds = date.getUTCSeconds();
 
             const embedStatus = new EmbedBuilder({
-                color: hexToRgb(settings.colors.secondary),
+                color: hexToRgb(settings.colors.primary),
                 title: "Status",
+                description: `I was developed by ${settings.links.developer}, where my job is to moderate and look after your server.\n\nI was **programmed** in [Typescript](${settings.links.typeScript}) using [Discord.Js](${settings.links.discordJs}), I stay **online** thanks to **[Square Cloud](${settings.links.squareCloud})**. Use </bot status:1236520871061884999> to know my currently status.\n\n> ${icon("slashCommand")} I only support **SlashCommands (/)**\n\nI'm currently taking care of **${client.guilds.cache.size.toLocaleString()} Servers** and managing **${client.guilds.cache.map(g => g.memberCount).reduce((a,b) => a + b).toLocaleString("pt-BR")} Users** 🥳`,
                 thumbnail: {
                     url: `${client.user.displayAvatarURL()}`
                 },
@@ -106,7 +96,7 @@ new Command({
                 embeds: [embedStatus]
             });
             break;
-          } // fim do /bot status
+          } // fim do /bot info
 
         }
           
