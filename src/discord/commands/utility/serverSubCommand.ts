@@ -55,7 +55,7 @@ new Command({
                 }
 
                 const embed = new EmbedBuilder({
-                    color: hexToRgb(settings.colors.secondary),
+                    color: hexToRgb(settings.colors.primary),
                     author: { name: `Badges - ${guild.name}`, iconURL: client.user?.displayAvatarURL() || "" },
                     thumbnail: { url: guild.iconURL() || "" },
                     description: `${icon("discordStaff")} Discord Staff: \`${counts["Staff"] || 0}\`\n${icon("partner")} Partner: \`${counts["Partner"] || 0}\`\n${icon("moderatorAluri")} Certified Moderator: \`${counts["CertifiedModerator"] || 0}\`\n${icon("hypeSquadEvents")} HypeSquad Events: \`${counts["Hypesquad"] || 0}\`\n${icon("bravery")} HypeSquad Bravery: \`${counts["HypeSquadOnlineHouse1"] || 0}\`\n${icon("brilliance")} HypeSquad Brilliance: \`${counts["HypeSquadOnlineHouse2"] || 0}\`\n${icon("balance")} HypeSquad Balance: \`${counts["HypeSquadOnlineHouse3"] || 0}\`\n${icon("bughunter")} Bug Hunter: \`${counts["BugHunterLevel1"] || 0}\`\n${icon("bughunter2")} Bug Hunter Gold: \`${counts["BugHunterLevel2"] || 0}\`\n${icon("activeDev")} Active Developer: \`${counts["ActiveDeveloper"] || 0}\`\n${icon("verifiedDev")} Early Verified Bot Developer: \`${counts["VerifiedDeveloper"] || 0}\`\n${icon("earlySupporter")} Early Supporter: \`${counts["PremiumEarlySupporter"] || 0}\``
@@ -160,7 +160,7 @@ new Command({
                         const pageMembers = members.slice(start, end);
 
                         return new EmbedBuilder({
-                            color: hexToRgb(settings.colors.secondary),
+                            color: hexToRgb(settings.colors.primary),
                             title: `${check} (${counts[check] || 0})`,
                             description: `The people with this badge within the server: \n\n> ${pageMembers.join("\n> ")}`,
                             footer: { text: `Page ${page + 1} of ${totalPages}` }
