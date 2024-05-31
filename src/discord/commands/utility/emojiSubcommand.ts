@@ -61,7 +61,7 @@ new Command({
             if (!guild.members.me?.permissions.has(PermissionFlagsBits.ManageGuildExpressions)) {
               reply.danger({
                 interaction,
-                text: `${icon("danger")} \`Missing ManagaGuildExpressions permission\``,
+                text: `${icon("danger")} I'm not allowed to manage expressions. (\`Missing ManageGuildExpressions permission\`)`,
                 ephemeral
               });
               return;
@@ -138,7 +138,7 @@ new Command({
             if (!guild.members.me?.permissions.has(PermissionFlagsBits.ManageGuildExpressions)) {
               reply.danger({
                 interaction,
-                text: `${icon("danger")} \`Missing ManagaGuildExpressions permission\``,
+                text: `${icon("danger")} I'm not allowed to manage expressions. (\`Missing ManageGuildExpressions permission\`)`,
                 ephemeral
               });
               return;
