@@ -39,7 +39,7 @@ new Command({
             },
           ],
         }, {
-          name: "delete",
+          name: "remove",
           description: "Remove a custom emoji from the server.",
           type: ApplicationCommandOptionType.Subcommand,
           options: [
@@ -133,7 +133,7 @@ new Command({
               break;
           } // fim do /emoji add
 
-          case "delete": {
+          case "remove": {
 
             if (!guild.members.me?.permissions.has(PermissionFlagsBits.ManageGuildExpressions)) {
               reply.danger({
