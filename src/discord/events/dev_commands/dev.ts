@@ -19,6 +19,39 @@ new Event({
                     return;
                 } else {
 
+                    /*fields: [
+                    {
+                        name: "🌐 ⠂Network",
+                        value: `${codeBlock("⬇️ 300mb - ⬆️ 150mb")}`,
+                        inline: true
+                    },
+                    {
+                        name: "🏓 ⠂Ping",
+                        value: `${codeBlock(`${client.ws.ping}ms`)}`,
+                        inline: true
+                    },
+                    {
+                        name: "🔮 ⠂Mention",
+                        value: `${client.user}`,
+                        inline: true
+                    },
+                    {
+                        name: "🕐 ⠂System time",
+                        value: `${codeBlock(`${hours}:${minutes}:${seconds}\n${day}/${month}/${year}`)}`,
+                        inline: true
+                    },
+                    {
+                        name: "🆔 ⠂ID",
+                        value: `${codeBlock(`${client.user.id}`)}`,
+                        inline: true
+                    },
+                    {
+                        name: "🍀 ⠂Environment",
+                        value: `${codeBlock("Production")}`,
+                        inline: true
+                    },
+                ]*/
+
                     const guilds = client.guilds.cache.size.toLocaleString();
                     const users = client.guilds.cache.map(g => g.memberCount).reduce((a,b) => a + b).toLocaleString("pt-BR");
                     const shards = client.shard?.count;
