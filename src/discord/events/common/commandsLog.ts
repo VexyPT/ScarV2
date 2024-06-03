@@ -1,5 +1,6 @@
 import { Event } from "#base";
 import { settings } from "#settings";
+import { hexToRgb } from "@magicyan/discord";
 import { EmbedBuilder, TextBasedChannel } from "discord.js";
 
 new Event({
@@ -13,6 +14,7 @@ new Event({
             const channelLogs = client.channels.cache.get(`${settings.channels.commandLogs}`) as TextBasedChannel;
 
             const embedLogs = new EmbedBuilder({
+                color: hexToRgb(settings.colors.azoxo),
                 author: {
                     name: `${user.username}`, iconURL: `${user.displayAvatarURL()}`
                 },
