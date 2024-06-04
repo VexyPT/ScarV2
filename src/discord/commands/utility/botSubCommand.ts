@@ -7,7 +7,7 @@ import { ApplicationCommandOptionType, ApplicationCommandType, EmbedBuilder } fr
 new Command({
     name: "bot",
     description: "See information about me",
-    dmPermission: false,
+    dmPermission: true,
     type: ApplicationCommandType.ChatInput,
     options: [
         {
