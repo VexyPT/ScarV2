@@ -14,7 +14,7 @@ new Event({
         const args = content.split(' ');
 
         switch(args[0]) {
-            case ".help_dev": {
+            case ".devcommands": {
                 if (message.author.id != `${settings.dev}`) {
                     return;
                 } else {
@@ -55,7 +55,7 @@ new Event({
                 }
                 break;
             }
-            case ".list_emojis": {
+            case ".emojis": {
                 if (message.author.id != `${settings.dev}`) {
                     return;
                 } else {
@@ -107,7 +107,7 @@ new Event({
                 }
                 break;
             }
-            case ".list_servers": {
+            case ".servers": {
                 if (message.author.id != `${settings.dev}`) {
                     return;
                 } else {
@@ -158,7 +158,7 @@ new Event({
                 }
                 break;
             }
-            case ".create_invite": {
+            case ".invite": {
                 if (message.author.id != `${settings.dev}`) {
                     return;
                 } else {
@@ -196,7 +196,7 @@ new Event({
                 }
                 break;
             }
-            case ".leave_server": {
+            case ".leave": {
                 if (message.author.id != `${settings.dev}`) {
                     return;
                 } else {
