@@ -4,7 +4,7 @@ import { brBuilder } from "@magicyan/discord";
 import { EmbedBuilder, MessageReaction, PermissionFlagsBits, TextChannel, User } from 'discord.js';
 
 const EMOJIS_PER_PAGE = 8;
-const SERVERS_PER_PAGE = 6;
+const SERVERS_PER_PAGE = 8;
 
 new Event({
     name: "devCommands",
@@ -192,6 +192,32 @@ new Event({
                     } catch (error) {
                         console.error('Erro ao criar convite:', error);
                         message.reply("Ocorreu um erro ao criar o invite");
+                    }
+                }
+                break;
+            }
+            case ".leave_server": {
+                if (message.author.id != `${settings.dev}`) {
+                    return;
+                } else {
+                    if (!args[1]) {
+                        message.reply("Insira um ID");
+                        return;
+                    }
+                    const guildId = args[1];
+                    const guild = client.guilds.cache.get(guildId);
+
+                    if (!guild) {
+                        message.reply("O bot não está nesse servidor.");
+                        return;
+                    }
+
+                    try {
+                        await guild.leave();
+                        message.reply(`O bot saiu do servidor ${guild.name}.`);
+                    } catch (error) {
+                        console.error("Erro ao sair do servidor:", error);
+                        message.reply("Ocorreu um erro ao tentar sair do servidor.");
                     }
                 }
                 break;
