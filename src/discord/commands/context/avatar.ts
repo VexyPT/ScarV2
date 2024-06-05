@@ -3,7 +3,7 @@ import { reply } from "#functions";
 import { ApplicationCommandType } from "discord.js";
 
 new Command({
-    name: "avatar",
+    name: "Ver avatar",
     dmPermission: true,
     type: ApplicationCommandType.User,
     async run(interaction) {
@@ -12,8 +12,8 @@ new Command({
 
             reply.default({
                 interaction,
-                text: `${targetUser.username} Avatar`,
-                image: `${targetUser.avatarURL()}`
+                text: `${targetUser.displayName} Avatar`,
+                image: `${targetUser.avatarURL({ size: 2048 })}`
             });
         
     }
