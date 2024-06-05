@@ -1,57 +1,40 @@
 import { Event } from "#base";
 import { settings } from "#settings";
 import { brBuilder } from "@magicyan/discord";
-import { EmbedBuilder, MessageReaction, User } from 'discord.js';
+import { EmbedBuilder, MessageReaction, PermissionFlagsBits, TextChannel, User } from 'discord.js';
 
 const EMOJIS_PER_PAGE = 8;
+const SERVERS_PER_PAGE = 6;
 
 new Event({
     name: "devCommands",
     event: "messageCreate",
     async run(message) {
-
         const { client, content } = message;
         const args = content.split(' ');
 
         switch(args[0]) {
+            case ".help_dev": {
+                if (message.author.id != `${settings.dev}`) {
+                    return;
+                } else {
+                    message.react("📨");
+                    message.author.send({
+                        content: brBuilder(
+                            "### - Dev Commands",
+                            "> .info_extended",
+                            "> .list_emojis",
+                            "> .create_invite",
+                            "> .list_servers"
+                        )
+                    });
+                }
+                break;
+            }
             case ".info_extended": {
                 if (message.author.id != `${settings.dev}`) {
                     return;
                 } else {
-
-                    /*fields: [
-                    {
-                        name: "🌐 ⠂Network",
-                        value: `${codeBlock("⬇️ 300mb - ⬆️ 150mb")}`,
-                        inline: true
-                    },
-                    {
-                        name: "🏓 ⠂Ping",
-                        value: `${codeBlock(`${client.ws.ping}ms`)}`,
-                        inline: true
-                    },
-                    {
-                        name: "🔮 ⠂Mention",
-                        value: `${client.user}`,
-                        inline: true
-                    },
-                    {
-                        name: "🕐 ⠂System time",
-                        value: `${codeBlock(`${hours}:${minutes}:${seconds}\n${day}/${month}/${year}`)}`,
-                        inline: true
-                    },
-                    {
-                        name: "🆔 ⠂ID",
-                        value: `${codeBlock(`${client.user.id}`)}`,
-                        inline: true
-                    },
-                    {
-                        name: "🍀 ⠂Environment",
-                        value: `${codeBlock("Production")}`,
-                        inline: true
-                    },
-                ]*/
-
                     const guilds = client.guilds.cache.size.toLocaleString();
                     const users = client.guilds.cache.map(g => g.memberCount).reduce((a,b) => a + b).toLocaleString("pt-BR");
                     const shards = client.shard?.count;
@@ -124,9 +107,95 @@ new Event({
                 }
                 break;
             }
-        
+            case ".list_servers": {
+                if (message.author.id != `${settings.dev}`) {
+                    return;
+                } else {
+                    let currentPage = 0;
+
+                    if (args.length > 1 && !isNaN(parseInt(args[1]))) {
+                        currentPage = parseInt(args[1]) - 1;
+                    }
+
+                    const servers = client.guilds.cache.map(guild => `${guild.name} - \`${guild.id}\``);
+                    const totalPages = Math.ceil(servers.length / SERVERS_PER_PAGE);
+
+                    const generateEmbed = (page: number) => {
+                        const start = page * SERVERS_PER_PAGE;
+                        const end = start + SERVERS_PER_PAGE;
+                        const serverList = servers.slice(start, end).join('\n');
+
+                        return new EmbedBuilder()
+                            .setTitle(`Server List - Page ${page + 1} of ${totalPages}`)
+                            .setDescription(serverList || 'No servers found');
+                    };
+
+                    const embedMessage = await message.reply({ embeds: [generateEmbed(currentPage)] });
+
+                    if (totalPages > 1) {
+                        await embedMessage.react('⬅️');
+                        await embedMessage.react('➡️');
+
+                        const filter = (reaction: MessageReaction, user: User) => ['⬅️', '➡️'].includes(reaction.emoji.name ?? '') && user.id === message.author.id;
+                        const collector = embedMessage.createReactionCollector({ filter });
+
+                        collector.on('collect', (reaction, user) => {
+                            reaction.users.remove(user.id);
+
+                            if (reaction.emoji.name === '⬅️') {
+                                currentPage = currentPage > 0 ? --currentPage : totalPages - 1;
+                            } else if (reaction.emoji.name === '➡️') {
+                                currentPage = currentPage + 1 < totalPages ? ++currentPage : 0;
+                            }
+
+                            embedMessage.edit({ embeds: [generateEmbed(currentPage)] });
+                        });
+
+                        collector.on('end', () => {
+                            embedMessage.reactions.removeAll().catch(console.error);
+                        });
+                    }
+                }
+                break;
+            }
+            case ".create_invite": {
+                if (message.author.id != `${settings.dev}`) {
+                    return;
+                } else {
+                    try {
+                        if (!args[1]) {
+                            message.reply("Insira um ID");
+                            return;
+                        }
+                        const guildId = args[1];
+                        const guild = client.guilds.cache.get(guildId);
+                        if (!guild) {
+                            message.reply("O bot não está nesse servidor.");
+                            return;
+                        }
+
+                        const channel = guild.channels.cache.find(
+                            (ch) => ch.isTextBased() && (ch as TextChannel).permissionsFor(guild.members.me!)?.has(PermissionFlagsBits.CreateInstantInvite)
+                        ) as TextChannel;
+
+                        if (!channel) {
+                            message.reply("Não há nenhum canal onde possa criar um convite.");
+                            return;
+                        }
+
+                        const invite = await channel.createInvite({
+                            maxAge: 0,
+                            maxUses: 1
+                        });
+
+                        message.reply(`Aqui está o convite: ${invite.url}`);
+                    } catch (error) {
+                        console.error('Erro ao criar convite:', error);
+                        message.reply("Ocorreu um erro ao criar o invite");
+                    }
+                }
+                break;
+            }
         }
-    
     }
-    
 });
